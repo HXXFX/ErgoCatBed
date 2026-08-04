@@ -6,7 +6,7 @@ dip, arching over a bump, lifting its head where the bed rises to meet it.
 
 Every cat is drawn by hand, and it is the drawing itself that bends.
 
-### **▶ [Open the app](https://hxxfx.github.io/ergocatbed/)**
+### **▶ [Open the app](https://ergocatbed.windnoise.org/)**
 
 ## How to use it
 
