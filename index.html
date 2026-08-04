@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ergonomic Cat Bed</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <!--
+    The panel markup lives here rather than being generated in JS so that the
+    structure of the UI is readable at a glance. src/ui/ControlPanel.js and
+    src/ui/ScorePanel.js attach behaviour to these ids; the preset buttons are
+    the one exception, since they are built from src/model/bedShapes.js.
+  -->
+  <div class="app">
+    <main class="stage">
+      <canvas id="canvas"></canvas>
+      <p class="stage-hint">Drag any bed section up or down. Hold <kbd>Shift</kbd> to sculpt across several.</p>
+    </main>
+
+    <aside class="panel">
+      <header class="panel-header">
+        <h1>Ergonomic Cat&nbsp;Bed</h1>
+        <p class="subtitle">Shape the bed. Watch the cat.</p>
+      </header>
+
+      <section class="panel-section" id="score">
+        <div class="score-headline">
+          <span class="score-number" id="score-total">--</span>
+          <span class="score-verdict" id="score-verdict">settling…</span>
+        </div>
+
+        <ul class="score-bars">
+          <li>
+            <span class="bar-label">Support</span>
+            <span class="bar-track"><span class="bar-fill" id="bar-support"></span></span>
+            <span class="bar-value" id="val-support">0</span>
+          </li>
+          <li>
+            <span class="bar-label">Posture</span>
+            <span class="bar-track"><span class="bar-fill" id="bar-posture"></span></span>
+            <span class="bar-value" id="val-posture">0</span>
+          </li>
+          <li>
+            <span class="bar-label">Pressure</span>
+            <span class="bar-track"><span class="bar-fill" id="bar-pressure"></span></span>
+            <span class="bar-value" id="val-pressure">0</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel-section">
+        <h2>Bed shape</h2>
+        <div class="button-grid" id="preset-buttons"></div>
+        <div class="button-row">
+          <button type="button" id="btn-autofit" class="primary">Auto-fit to cat</button>
+        </div>
+        <div class="button-row">
+          <button type="button" id="btn-flatten">Flatten</button>
+          <button type="button" id="btn-drop">Re-drop cat</button>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <h2>Bed</h2>
+        <label class="field">
+          <span class="field-label">Sections <output id="out-sections">14</output></span>
+          <input type="range" id="input-sections" min="6" max="24" step="1" value="14">
+        </label>
+        <label class="field">
+          <span class="field-label">Firmness <output id="out-firmness">50%</output></span>
+          <input type="range" id="input-firmness" min="0" max="100" step="1" value="50">
+        </label>
+      </section>
+
+      <section class="panel-section">
+        <h2>Cat</h2>
+        <!-- Options are built from the registry in src/cats/index.js. -->
+        <div class="button-grid" id="cat-buttons"></div>
+        <label class="field">
+          <span class="field-label">Size</span>
+          <select id="input-size">
+            <option value="small">Kitten</option>
+            <option value="medium" selected>House cat</option>
+            <option value="large">Chonk</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field-label">Spine stiffness <output id="out-stiffness">36%</output></span>
+          <input type="range" id="input-stiffness" min="4" max="90" step="1" value="36">
+        </label>
+      </section>
+
+      <section class="panel-section">
+        <h2>Show</h2>
+        <label class="check"><input type="checkbox" id="chk-pressure"> Pressure map</label>
+        <label class="check"><input type="checkbox" id="chk-target"> Ideal contour</label>
+        <label class="check"><input type="checkbox" id="chk-spine"> Spine</label>
+        <label class="check"><input type="checkbox" id="chk-labels"> Section heights</label>
+        <label class="check"><input type="checkbox" id="chk-brush"> Sculpt brush</label>
+      </section>
+
+      <footer class="panel-footer">
+        <p><kbd>&larr;</kbd> <kbd>&rarr;</kbd> pick section &nbsp;·&nbsp; <kbd>&uarr;</kbd> <kbd>&darr;</kbd> nudge</p>
+        <p><kbd>F</kbd> flatten &nbsp;·&nbsp; <kbd>A</kbd> auto-fit &nbsp;·&nbsp; <kbd>Space</kbd> re-drop</p>
+      </footer>
+    </aside>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
